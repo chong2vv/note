@@ -391,7 +391,7 @@ ArrayList<User> userList = new ArrayList<>();
 ```
 userList.add(user);
 ```
-没有泛型类时，原始的ArrayList类提供的get方法别无选择，只能返回Object，因此get方法的调用者必须对返回值进行类型转换，因此建议使用ArrayList<User>。
+没有泛型类时，原始的ArrayList类提供的get方法别无选择，只能返回Object，因此get方法的调用者必须对返回值进行类型转换，因此建议使用`ArrayList<User>`。
 
 获取元素如下：
 
@@ -587,13 +587,13 @@ public class Pair {
 }
 ```
 
-在程序中可以包含不同类型的Pair，例如，Pair<String>或Pair<LocalDate>。而擦除类型后就变成原始的Pair类型了。
+在程序中可以包含不同类型的Pair，例如，`Pair<String>`或`Pair<LocalDate>`。而擦除类型后就变成原始的Pair类型了。
 
 原始类型用第一个限定的类型变量来替换，如果没有给定的限定就用Object替换。
 
 ### 约束与局限性
 #### 不能用基本类型实例化类型参数
-不能用类型参数代替基本类型，因此没有类似Pair<int>、Pair<double>。
+不能用类型参数代替基本类型，因此没有类似`Pair<int>`、`Pair<double>`。
 > 原因就是擦除之后，Pair类含有Object类型的域，而Object不能存储double值（基本类型）
 #### 运行时类型查询只是用于原始类型
 >虚拟机中的对象总有一个特定的非泛型类型，因此，所有的类型查询只产生原始类型。
@@ -609,13 +609,17 @@ Object[] objarray = table;
 ```
 
 这样objarray[0]="hello"就会抛出异常。
+
 #### 不能实例化类型变量
+
 不能使用像new T(...)，new T[...]或T.class这样的表达式中的类型变量。
 
 #### 不能构造泛型数组 
+
 同上，就像不能实例化泛型示例也不能实例化泛型数组。泛型化数组T[]
 
 #### 泛型类的静态上下文中类型的变量无效
+
 不能在静态域或方法中引用类型变量，例如：
 
 ```
@@ -631,12 +635,15 @@ public class Singleton<T> {
 #### 不能抛出或捕获泛型类的示例，重点还是注意擦除后的冲突。
 
 ### 泛型类型的继承规则
-比如父类Parents和子类Son，那么Pair<Son>不是Pair<Parents>的一个子类。
 
-因为无论P<S>、P<T>里，S和T有什么样的联系，P<S>和P<T>没什么联系。
+比如父类Parents和子类Son，那么`Pair<Son>`不是`Pair<Parents>`的一个子类。
+
+因为无论P`<S>`、`P<T>`里，S和T有什么样的联系，`P<S>`和`P<T>`没什么联系。
 
 ### 通配符类型
+
 #### 通配符概念
+
 通配符类型中，允许类型参数变化。例如：
 
 ```
@@ -645,6 +652,7 @@ Pair<? extends Emloyee>
 这个表示任何泛型Pair类型，他的类型参数都是Emloyee的子类。
 
 #### 通配符的超类型限定
+
 通配符可以指定一个超类型限定，例如：
 
 ```
@@ -752,7 +760,9 @@ public interFace Comparable<T> {
 ```
 
 ## 集合
+
 #### Collection接口
+
 Java中集合类的基本接口是Collection接口。这个接口有两个基本方法：
 
 ```
