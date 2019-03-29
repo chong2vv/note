@@ -465,8 +465,22 @@ public static double max(double...values){
 - 实现通用的数组操纵代码。
 - 利用Method对象，这个对象很像C++中的函数指针。
 
+#### Class 类
+在程序运行期间，Java运行时系统始终为所有的对象维护一个被称为运行时的类型标识，这个信息跟随者每个对象所属的类，虚拟机利用运行时类型信息选择相对应的方法执行。可以通过专门的Java类访问这些信息，保存这些信息的类被称为Class，Object类中的getClass()方法将返回一个Class类型的实例。
 
-## （TODO, 这个单独拿出来说）
+```
+Employee e;
+Class cl = e.getClass();
+```
+例如可以使用Class的方法就是getName，这个方法将返回类的名字。
+
+```
+Employee e;
+Class cl = e.getClass();
+String className = cl.getName;
+```
+注意：一个Class对象实际上标识的是一个类型，而这个类型未必一定是一种类，例如int不是类，但是int.class是一个Class类型的对象。同时，Class类实际上是一个泛型类，例如上文的Employee.class的类型实际上是Class`<Employee>`。
+
 
 ## 泛型程序设计
 ### 为什么要使用泛型程序设计
@@ -758,6 +772,29 @@ public interFace Comparable<T> {
     }
 }
 ```
+### 接口示例
+#### 接口与回调
+回调是一种常见的设计模式，这种模式可以指出某个特定时间的发生时应该采取的动作。
+例如IM中收到消息处理之后可以回调去做对应的UI更新。
+
+### lambda表达式
+#### lambda表达式语法
+
+```
+(String first, String second) -> {
+    if(first.length() < second.length()) return -1;
+    else if(first.length() > second.length()) return 1;
+    else return 0;
+}
+```
+即使lambda表达式没有参数，仍然要提供空括号，就像无参数方法一样:
+
+```
+() -> {for (int i = 100; i>=0; i--) System.out.println(i);}
+```
+#### 函数式接口
+对于只有一个抽象方法的接口，需要这种接口的对象是，就可以提供一个lambda表达式。这种接口称为函数式接口。
+
 
 ## 集合
 
